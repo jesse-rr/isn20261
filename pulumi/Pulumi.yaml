@@ -1,0 +1,10 @@
+name: isn20261
+description: ISN 2026.1
+runtime:
+  name: python
+  options:
+    toolchain: uv
+config:
+  pulumi:tags:
+    value:
+      pulumi:template: python
