@@ -42,64 +42,54 @@ São requisitos não funcionais:
 Melhorar:
 
 ```mermaid
-flowchart LR
+flowchart TD
 
-subgraph Usuários
-  usuário1
-  usuário2
-  usuárioN
-end
-
-subgraph Backend
-    rest-api
-    broker
-    IA
-
-    subgraph Processadores
-      processador1
-      processador2
-      processadorN
+    subgraph U[Usuários]
+        u1[Usuário 1]
+        u2[Usuário 2]
+        u.[...]
+        un[Usuário N]
     end
-    chaves
 
-    subgraph Bancos-de-Dados
-      cache
-      SQL
-      TSDB
+    subgraph F[Frontends]
+        f[frontend]
     end
-end
 
-subgraph Frontends
-  frontend
-end
+    subgraph Backends
 
-usuário1 --> frontend
-usuário2 --> frontend
-usuárioN --> frontend
+        subgraph RA[REST APIs]
+            r1[REST API 1]
+            r2[REST API 2]
+            r.[...]
+            rn[REST API N]
+        end
 
-frontend --> rest-api
-rest-api --> broker
-processador1 --> broker
-processador2 --> broker
-processadorN --> broker
+        b[Broker]
+        IA[I.A.]
 
-processador1 --> chaves
-processador2 --> chaves
-processadorN --> chaves
+        subgraph P[Processadores]
+            p1[Processador 1]
+            p2[Processador 2]
+            p.[...]
+            pn[Processador N]
+        end
 
-processador1 --> cache
-processador2 --> cache
-processadorN --> cache
+        ch[Chaves]
 
-processador1 --> SQL
-processador2 --> SQL
-processadorN --> SQL
+        subgraph BDs[Bancos de Dados]
+            ca[Cache]
+            sql[SQL]
+            tsdb[TSDB]
+        end
+    end
 
-processador1 --> TSDB
-processador2 --> TSDB
-processadorN --> TSDB
-
-processador1 --> IA
-processador2 --> IA
-processadorN --> IA
+    U --> F
+    F --> RA
+    RA --> b
+    P --> b
+    P --> IA
+    P --> ch
+    P --> ca
+    P --> sql
+    P --> tsdb
 ```
