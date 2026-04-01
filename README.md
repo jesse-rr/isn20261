@@ -36,3 +36,70 @@ São requisitos não funcionais:
 1. O sistema deve ter boa responsividade.
 1. O sistema deve rodar sob baixa latência.
 1. O sistema deve rodar sob custo mínimo, se for o caso multinuvem com *service mesh*.
+
+## Diagrama de blocos
+
+Melhorar:
+
+```mermaid
+flowchart LR
+
+subgraph Usuários
+  usuário1
+  usuário2
+  usuárioN
+end
+
+subgraph Backend
+    rest-api
+    broker
+    IA
+
+    subgraph Processadores
+      processador1
+      processador2
+      processadorN
+    end
+    chaves
+
+    subgraph Bancos-de-Dados
+      cache
+      SQL
+      TSDB
+    end
+end
+
+subgraph Frontends
+  frontend
+end
+
+usuário1 --> frontend
+usuário2 --> frontend
+usuárioN --> frontend
+
+frontend --> rest-api
+rest-api --> broker
+processador1 --> broker
+processador2 --> broker
+processadorN --> broker
+
+processador1 --> chaves
+processador2 --> chaves
+processadorN --> chaves
+
+processador1 --> cache
+processador2 --> cache
+processadorN --> cache
+
+processador1 --> SQL
+processador2 --> SQL
+processadorN --> SQL
+
+processador1 --> TSDB
+processador2 --> TSDB
+processadorN --> TSDB
+
+processador1 --> IA
+processador2 --> IA
+processadorN --> IA
+```
