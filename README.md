@@ -106,6 +106,7 @@ end
 subgraph AWS
     subgraph Frontends
         Route53
+        CertificateManager
         CloudFront
         S3
     end
@@ -133,6 +134,7 @@ end
 
 Usuário --> Route53
 Usuário --> CloudFront
+CloudFront --> CertificateManager
 CloudFront --> S3
 CloudFront --> APIGatewayWebSocket
 APIGatewayWebSocket --> Lambda_WS
