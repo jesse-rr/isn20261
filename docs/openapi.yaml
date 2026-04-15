@@ -232,7 +232,7 @@ paths:
                     type: array
                     items:
                       type: string
-                      example: ["Netflix", "Amazon Prime"]
+                    example: ["Netflix", "Amazon Prime"]
                   age-rating:
                     type: string
                     minLength: 1
