@@ -15,7 +15,7 @@ No serviço [IAM](https://console.aws.amazon.com/iam/):
     - DynamoDB: `AmazonDynamoDBFullAccess`;
     - Lambda: `AWSLambda_FullAccess`;
 
-4. Além dessas políticas, para  algumas permissões do IAM, deve-de criar uma política manualmente (*inline policy*), dada a amplitude das permissões plenas de `IAMFullAccess`:
+4. Além dessas políticas, para algumas permissões do IAM, deve-se criar uma política manualmente (*inline policy*), dada a amplitude das permissões plenas de `IAMFullAccess`:
 
 ```json
 {
