@@ -19,24 +19,34 @@ No serviço [IAM](https://console.aws.amazon.com/iam/):
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"iam:CreateRole",
+				"iam:AttachRolePolicy",
+				"iam:PutRolePolicy",
+				"iam:DetachRolePolicy",
+				"iam:DeleteRolePolicy",
+				"iam:GetRole",
+				"iam:ListRoles",
+				"iam:TagRole",
+				"iam:UntagRole"
+			],
+			"Resource": "*"
+		},
         {
             "Effect": "Allow",
-            "Action": [
-                "iam:CreateRole",
-                "iam:AttachRolePolicy",
-                "iam:PutRolePolicy",
-                "iam:DetachRolePolicy",
-                "iam:DeleteRolePolicy",
-                "iam:GetRole",
-                "iam:ListRoles",
-                "iam:TagRole",
-                "iam:UntagRole"
-            ],
-            "Resource": "*"
+            "Action": "iam:PassRole",
+            "Resource": "*",
+            "Condition": {
+                "StringEquals": {
+                    "iam:PassedToService": "lambda.amazonaws.com"
+                }
+            }
         }
-    ]
+	]
 }
 ```
 
