@@ -9,48 +9,64 @@ No serviço [IAM](https://console.aws.amazon.com/iam/):
 1. Criar um [grupo de usuário](https://console.aws.amazon.com/iam#/groups).
 2. Criar um [usuário](https://console.aws.amazon.com/iam#/users) e associá-lo ao grupo criado. Importante: esse usuário não deve ter acesso ao AWS Management Console.
 
-3. De volta ao grupo de usuário criado, associar as seguintes políticas predefinidas:
-
-    - Api Gateway: `AmazonAPIGatewayAdministrator`;
-    - DynamoDB: `AmazonDynamoDBFullAccess`;
-    - Lambda: `AWSLambda_FullAccess`;
-
-4. Além dessas políticas, para algumas permissões do IAM, deve-se criar uma política manualmente (*inline policy*), dada a amplitude das permissões plenas de `IAMFullAccess`:
+3. De volta ao grupo de usuário criado, associar as seguintes políticas manualmente (*inline policy*):
 
 ```json
 {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Action": [
-				"iam:CreateRole",
-				"iam:AttachRolePolicy",
-				"iam:PutRolePolicy",
-				"iam:DetachRolePolicy",
-				"iam:DeleteRolePolicy",
-				"iam:GetRole",
-				"iam:ListRoles",
-				"iam:TagRole",
-				"iam:UntagRole"
-			],
-			"Resource": "*"
-		},
+    "Version": "2012-10-17",
+    "Statement": [
         {
+            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "iam:PassRole",
-            "Resource": "*",
+            "Resource": "arn:aws:iam::*:role/*",
             "Condition": {
                 "StringEquals": {
                     "iam:PassedToService": "lambda.amazonaws.com"
                 }
             }
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "iam:GetRole",
+                "iam:UntagRole",
+                "iam:TagRole",
+                "iam:CreateRole",
+                "iam:DeleteRole",
+                "iam:AttachRolePolicy",
+                "iam:PutRolePolicy",
+                "iam:ListInstanceProfilesForRole",
+                "iam:DetachRolePolicy",
+                "iam:ListAttachedRolePolicies",
+                "iam:DeleteRolePolicy",
+                "iam:UpdateRole",
+                "iam:ListRolePolicies",
+                "iam:GetRolePolicy"
+            ],
+            "Resource": "arn:aws:iam::*:role/*"
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": [
+                "cloudfront:*",
+                "apigateway:*",
+                "s3:*",
+                "route53:*",
+                "lambda:*",
+                "dynamodb:*",
+                "cognito-idp:*",
+                "acm:*"
+            ],
+            "Resource": "*"
         }
-	]
+    ]
 }
 ```
 
-5. De volta ao usuário criado, deve-se criar uma chave de acesso, a qual é composta por um identificador (`AWS_ACCESS_KEY_ID`) e a chave propriamente dita (`AWS_SECRET_ACCESS_KEY`).
+4. De volta ao usuário criado, deve-se criar uma chave de acesso, a qual é composta por um identificador (`AWS_ACCESS_KEY_ID`) e a chave propriamente dita (`AWS_SECRET_ACCESS_KEY`).
 
 ## Preparação do GitHub Codespaces
 
