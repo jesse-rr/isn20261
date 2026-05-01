@@ -4,6 +4,8 @@ Projeto da disciplina ISN 75620501, edição 2026.1.
 
 ## Preparação da nuvem AWS
 
+Para rodar a aplicação, você precisará criar tokens na AWS e no Pulumi:
+
 No serviço [IAM](https://console.aws.amazon.com/iam/):
 
 1. Criar um [grupo de usuário](https://console.aws.amazon.com/iam#/groups).
@@ -70,7 +72,10 @@ No serviço [IAM](https://console.aws.amazon.com/iam/):
 
 ## Preparação do GitHub Codespaces
 
-Para facilitar o uso da nuvem pública, AWS, foi criado um repositório (monorepo) para uso compartilhado. Entretanto, cada usuário deve configurar suas variáveis de ambiente, o que inclui chaves de acesso.
+Para facilitar o uso da nuvem pública, AWS, foi criado um repositório (monorepo) para uso compartilhado. Entretanto, cada usuário deve configurar suas variáveis de ambiente, o que inclui chaves de acesso. Para que seus Tokens sejam utilizados no codespaces, você precisa adicioná-los nas suas configurações de usuário:
+
+<img width="1373" height="726" alt="image" src="https://github.com/user-attachments/assets/c00b8f53-45a2-48a1-b6b4-9186823659a4" />
+
 
 Para AWS:
 
